@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Explainable Temporal GNNs for AML on Elliptic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      background: #0f172a;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, #1e3a8a, #312e81);
+      padding: 40px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+      font-weight: 700;
+    }
+    header p {
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      background: #020617;
+      padding: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      border-bottom: 1px solid #1f2933;
+      z-index: 100;
+    }
+    nav a {
+      color: #93c5fd;
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 6px 10px;
+      border-radius: 6px;
+    }
+    nav a:hover {
+      background: #1e3a8a;
+      color: white;
+    }
+    section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h2 {
+      color: #60a5fa;
+      border-bottom: 1px solid #1f2933;
+      padding-bottom: 6px;
+    }
+    h3 {
+      color: #93c5fd;
+      margin-top: 20px;
+    }
+    .card {
+      background: #020617;
+      border: 1px solid #1f2933;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 15px;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 10px;
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+    ul {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Explainable Temporal Graph Neural Networks for Anti-Money Laundering<br>on the Elliptic Bitcoin Dataset</h1>
+  <p>
+    Group 1 – AI in Finance<br>
+    SP Jain School of Global Management<br>
+    Instructor: Dr. Debashis Guha
+  </p>
+</header>
+
+<nav>
+  <a href="#abstract">Abstract</a>
+  <a href="#introduction">Introduction</a>
+  <a href="#literature">Literature Survey</a>
+  <a href="#dataset">Dataset</a>
+  <a href="#baseline">Baseline</a>
+  <a href="#methodology">Proposed Methodology</a>
+  <a href="#experiments">Experimental Setup</a>
+  <a href="#feasibility">Technical Feasibility</a>
+</nav>
+
+<section id="abstract">
+  <h2>Abstract</h2>
+  <div class="card">
+    <p>
+      Money laundering in cryptocurrency systems exhibits complex relational and temporal patterns that are difficult to capture using traditional rule-based and feature-based machine learning techniques. Blockchain transactions naturally form large-scale directed graphs, where illicit behavior is often characterized by multi-hop flows, layering, and cyclic movement of funds. Graph Neural Networks (GNNs) provide a principled framework for modeling such relational structures by learning representations that jointly encode node attributes and graph topology.
+    </p>
+    <p>
+      This project investigates explainable and temporal GNNs for detecting illicit Bitcoin transactions using the Elliptic dataset. A feature-based and static GraphSAGE baseline is first established, followed by a proposed extension incorporating temporal modeling, edge-aware message passing, and subgraph-level explainability. The objective is to develop a reproducible and interpretable AML framework aligned with real-world financial compliance requirements.
+    </p>
+  </div>
+</section>
+
+<section id="introduction">
+  <h2>Introduction</h2>
+  <div class="card">
+    <p>
+      Anti-Money Laundering (AML) in cryptocurrency networks is challenging due to pseudo-anonymity, high transaction velocity, and complex fund flow structures. Traditional AML systems rely on rules and tabular features, which struggle to detect laundering typologies such as smurfing, layering, mixing, and cyclic transfers.
+    </p>
+    <p>
+      Bitcoin transaction data naturally forms a directed graph. Suspicious behavior is often defined by relational patterns rather than isolated feature anomalies. Graph Neural Networks are therefore a natural modeling choice, as they can capture multi-hop dependencies and structural context.
+    </p>
+    <p>
+      This project uses the Elliptic benchmark to study static and temporal GNN-based AML detection, with a strong emphasis on interpretability for regulatory compliance.
+    </p>
+  </div>
+</section>
+
+<section id="literature">
+  <h2>Literature Survey</h2>
+  <div class="card">
+    <h3>Graph-Based AML and Network Analytics</h3>
+    <p>
+      Network analytics has been shown to be crucial for AML, as laundering is fundamentally a relational process. The systematic review by Deprez et al. (2024) highlights the limitations of static graph representations and motivates temporal and relational learning.
+    </p>
+
+    <h3>Elliptic Dataset and Explainable GNNs</h3>
+    <p>
+      Lawal et al. (2024) apply explainable GNNs to the Elliptic dataset, demonstrating that graph structure improves detection over feature-only models and that subgraph-level explanations are essential for regulatory transparency.
+    </p>
+
+    <h3>GNNs for Cryptocurrency AML</h3>
+    <p>
+      Ferretti et al. (2025) compare GCN, GAT, and GraphSAGE models for cryptocurrency AML, confirming the value of relational learning and the inductive capability of GraphSAGE.
+    </p>
+
+    <h3>Temporal and Heterogeneous Financial Graphs</h3>
+    <p>
+      Xu et al. and recent bank-scale studies show that laundering patterns are sequential and relation-specific, motivating temporal and edge-aware GNN architectures.
+    </p>
+
+    <h3>Research Gap</h3>
+    <p>
+      Public Elliptic-based studies largely rely on static homogeneous GNNs, while industrial systems use temporal and heterogeneous models that are not reproducible. Few works integrate temporal modeling, edge semantics, and explainability in a unified public benchmark framework.
+    </p>
+  </div>
+</section>
+
+<section id="dataset">
+  <h2>Dataset Description</h2>
+  <div class="card">
+    <p>
+      The Elliptic dataset contains 203,769 Bitcoin transactions and 234,355 directed edges across 49 temporal snapshots. Each node has 166 anonymized features and is labeled as licit, illicit, or unknown. The dataset is highly imbalanced, reflecting real-world AML conditions.
+    </p>
+    <p>
+      Transactions are modeled as nodes, fund flows as edges, and time is represented via snapshot indices, enabling temporal graph construction.
+    </p>
+  </div>
+</section>
+
+<section id="baseline">
+  <h2>Baseline Models and Prototype</h2>
+  <div class="card">
+    <h3>Logistic Regression</h3>
+    <p>
+      A feature-only, class-weighted Logistic Regression model establishes a non-graph baseline and provides an interpretable reference.
+    </p>
+
+    <h3>Static GraphSAGE</h3>
+    <p>
+      A GraphSAGE model aggregates neighborhood information to learn relational representations. Evaluation using PR–AUC shows comparable performance to the strong feature baseline, motivating more expressive temporal and semantic modeling.
+    </p>
+  </div>
+</section>
+
+<section id="methodology">
+  <h2>Proposed Methodology</h2>
+  <div class="card">
+    <h3>Temporal Modeling</h3>
+    <p>
+      A Temporal GNN is proposed to capture sequential laundering patterns such as rapid fan-out and delayed consolidation.
+    </p>
+
+    <h3>Edge-Aware Message Passing</h3>
+    <p>
+      Transaction amounts, directions, and time gaps are incorporated as edge features, enabling the model to distinguish between different financial behaviors.
+    </p>
+
+    <h3>Explainability</h3>
+    <p>
+      Subgraph-based explainers (e.g., GNNExplainer) are integrated to identify influential neighbors and temporal paths, ensuring auditability.
+    </p>
+  </div>
+</section>
+
+<section id="experiments">
+  <h2>Experimental Setup and Evaluation</h2>
+  <div class="card">
+    <p>
+      Models are trained using temporally ordered splits and evaluated with Precision–Recall curves, PR–AUC, and Precision@K to reflect operational AML requirements. Controlled comparisons isolate the impact of relational and temporal modeling.
+    </p>
+  </div>
+</section>
+
+<section id="feasibility">
+  <h2>Technical Feasibility</h2>
+  <div class="card">
+    <p>
+      The system is implemented using PyTorch Geometric, Scikit-learn, and Streamlit, and trained on an RTX 4060 GPU with 8GB VRAM and 24GB system memory. The dataset size and model complexity are well within the capabilities of this hardware, supporting mini-batch GNN training and explainability analysis.
+    </p>
+    <p>
+      The approach is scalable via neighborhood sampling and inductive learning, and fully reproducible using open-source tools.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <p>Project Proposal – Explainable Temporal GNNs for AML on Elliptic | SP Jain School of Global Management</p>
+</footer>
+
+</body>
+</html>
